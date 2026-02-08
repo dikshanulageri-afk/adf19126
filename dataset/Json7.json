@@ -1,0 +1,35 @@
+{
+	"name": "Json7",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "targetcont"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"Duration": {
+					"type": "string"
+				},
+				"Pulse": {
+					"type": "string"
+				},
+				"Maxpulse": {
+					"type": "string"
+				},
+				"Calories": {
+					"type": "string"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

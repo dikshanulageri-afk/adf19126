@@ -1,0 +1,19 @@
+{
+	"name": "Json4",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SourceLinked",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "targetcont"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

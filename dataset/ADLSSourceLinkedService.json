@@ -1,0 +1,41 @@
+{
+	"name": "ADLSSourceLinkedService",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "data_test (2).csv",
+				"container": "democont17126"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Duration",
+				"type": "String"
+			},
+			{
+				"name": "Pulse",
+				"type": "String"
+			},
+			{
+				"name": "Maxpulse",
+				"type": "String"
+			},
+			{
+				"name": "Calories",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

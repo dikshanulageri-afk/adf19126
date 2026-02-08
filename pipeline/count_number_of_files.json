@@ -1,0 +1,117 @@
+{
+	"name": "count_number_of_files",
+	"properties": {
+		"activities": [
+			{
+				"name": "Get Metadata1",
+				"type": "GetMetadata",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "DelimitedText11",
+						"type": "DatasetReference"
+					},
+					"fieldList": [
+						"childItems"
+					],
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					},
+					"formatSettings": {
+						"type": "DelimitedTextReadSettings"
+					}
+				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Get Metadata1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "file1",
+					"value": {
+						"value": "@length(activity('Get Metadata1').output.childItems)\n",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"value 11": {
+				"type": "String"
+			},
+			"value 12": {
+				"type": "String"
+			},
+			"value21": {
+				"type": "Boolean"
+			},
+			"value22": {
+				"type": "Boolean"
+			},
+			"a1": {
+				"type": "String"
+			},
+			"a2": {
+				"type": "String"
+			},
+			"b1": {
+				"type": "String"
+			},
+			"b2": {
+				"type": "String"
+			},
+			"b11": {
+				"type": "String"
+			},
+			"diksha1": {
+				"type": "String"
+			},
+			"diksha2": {
+				"type": "String"
+			},
+			"zz1": {
+				"type": "Boolean"
+			},
+			"zz2": {
+				"type": "Boolean"
+			},
+			"x1": {
+				"type": "String"
+			},
+			"x2": {
+				"type": "String"
+			},
+			"filecount": {
+				"type": "String"
+			},
+			"file1": {
+				"type": "Integer"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-01-31T14:54:17Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

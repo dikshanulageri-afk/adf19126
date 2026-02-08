@@ -1,0 +1,39 @@
+{
+	"name": "AzureSqlTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SinkLinked",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Duration",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Pulse",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MaxPulse",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Calories",
+				"type": "decimal",
+				"precision": 6,
+				"scale": 1
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "ExerciseData"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
