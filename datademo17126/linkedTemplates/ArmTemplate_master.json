@@ -1,0 +1,152 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "datademo17126"
+		},
+		"AzureDataLakeStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureDataLakeStorage1'"
+		},
+		"AzureDataLakeStorage2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage2'"
+		},
+		"SinkLinked_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SinkLinked'"
+		},
+		"SourceLinked_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'SourceLinked'"
+		},
+		"inputcontainerlink_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'inputcontainerlink'"
+		},
+		"AzureDataLakeStorage2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://dikshaaccount.dfs.core.windows.net/"
+		},
+		"SinkLinked_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "demobrowsejob.database.windows.net"
+		},
+		"SinkLinked_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "db20126"
+		},
+		"SinkLinked_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "admin20126"
+		},
+		"SourceLinked_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://dikshaaccount.dfs.core.windows.net/"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "datademo17126_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureDataLakeStorage1_connectionString": {
+						"value": "[parameters('AzureDataLakeStorage1_connectionString')]"
+					},
+					"AzureDataLakeStorage2_accountKey": {
+						"value": "[parameters('AzureDataLakeStorage2_accountKey')]"
+					},
+					"SinkLinked_password": {
+						"value": "[parameters('SinkLinked_password')]"
+					},
+					"SourceLinked_accountKey": {
+						"value": "[parameters('SourceLinked_accountKey')]"
+					},
+					"inputcontainerlink_connectionString": {
+						"value": "[parameters('inputcontainerlink_connectionString')]"
+					},
+					"AzureDataLakeStorage2_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage2_properties_typeProperties_url')]"
+					},
+					"SinkLinked_properties_typeProperties_server": {
+						"value": "[parameters('SinkLinked_properties_typeProperties_server')]"
+					},
+					"SinkLinked_properties_typeProperties_database": {
+						"value": "[parameters('SinkLinked_properties_typeProperties_database')]"
+					},
+					"SinkLinked_properties_typeProperties_userName": {
+						"value": "[parameters('SinkLinked_properties_typeProperties_userName')]"
+					},
+					"SourceLinked_properties_typeProperties_url": {
+						"value": "[parameters('SourceLinked_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "datademo17126_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'datademo17126_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "datademo17126_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'datademo17126_ArmTemplate_1')]"
+			]
+		}
+	]
+}
